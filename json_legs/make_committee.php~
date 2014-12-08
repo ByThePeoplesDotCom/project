@@ -1,0 +1,25 @@
+<?php
+
+$parse = file_get_contents('/var/www/html/json/WA/committees.tsv');
+$delimiter = "\n";
+$splitcontents = explode($delimiter, $parse);
+foreach ( $splitcontents as $line )
+{
+    $bits = explode("\t", $line);
+    $id = $bits[0];
+    $convert = $bits[1];
+    $json = json_decode($convert);
+    $committee_name = $json->committee;
+    $committee_id = $json->id;
+ 
+    
+//   file_put_contents('/var/www/html/json/WA/f_committees.tsv', "$id \t $bits[1] \t $committee_name \t $committee_id \n", FILE_APPEND);
+   
+    }
+    //remove the last line
+   $lines = file('/var/www/html/json/WA/f_committees.tsv');
+	array_pop($lines);
+	$file = join('',$lines);
+	file_put_contents('/var/www/html/json/WA/f_committees.tsv', $file);
+
+?>

@@ -1,0 +1,121 @@
+source committees
+{
+	type = tsvpipe
+	tsvpipe_command = cat /var/www/html/json/WA/f_committees.tsv
+	tsvpipe_attr_json = json
+	tsvpipe_field = name
+	tsvpipe_field_string = committee_id
+}
+
+source l_bills
+{
+	type = tsvpipe
+	tsvpipe_command = cat /var/www/html/json/WA/f_l_bills.tsv
+	tsvpipe_attr_json = json
+	tsvpipe_field = title
+	tsvpipe_attr_string = subjects
+	tsvpipe_attr_string = bill_id
+}
+
+source u_bills
+{
+	type = tsvpipe
+	tsvpipe_command = cat /var/www/html/json/WA/f_u_bills.tsv
+	tsvpipe_attr_json = json
+	tsvpipe_field = title
+	tsvpipe_attr_string = subjects
+	tsvpipe_attr_string = bill_id
+}
+
+source legislators
+{
+	type = tsvpipe
+	tsvpipe_command = cat /var/www/html/json/WA/f_legs.tsv
+	tsvpipe_attr_json = json
+	tsvpipe_field_string = name
+	tsvpipe_field_string = legislator_id
+	tsvpipe_field_string = district
+	tsvpipe_field_string = state
+	tsvpipe_field_string = votesmart_id
+	tsvpipe_field_string = chamber
+
+}
+
+index committees
+{
+    source 		= committees
+    path 		= /var/lib/sphinx/data/committees
+}
+
+index l_bills
+{
+    source 		= l_bills
+    path 		= /var/lib/sphinx/data/l_bills
+}
+
+index u_bills
+{
+    source 		= u_bills
+    path 		= /var/lib/sphinx/data/u_bills
+}
+
+index legislators
+{
+    source 		= legislators
+    path 		= /var/lib/sphinx/data/legislators
+}
+
+index rt_legs
+{
+	type = rt
+	path = /var/lib/sphinx/data/rt_legs
+	rt_attr_json = json
+	rt_field = name
+	rt_attr_string = name
+	rt_attr_string = legislator_id
+	rt_attr_string = district
+	rt_attr_string = state
+	rt_attr_string = votesmart_id
+	rt_attr_string = chamber
+}
+
+index rt_l_bills
+{
+	type= rt
+	path = /var/lib/sphinx/data/rt_l_bills
+	rt_attr_json = json
+	rt_field = title
+	rt_attr_string = subjects
+	rt_attr_string = bill_id
+}
+
+index rt_u_bills:rt_l_bills
+{
+	path = /var/lib/sphinx/data/rt_u_bills
+}
+
+index rt_committees
+{
+	type = rt
+	path = /var/lib/sphinx/data/rt_committees
+	rt_attr_json = json
+	rt_field = name
+	rt_attr_string = committee_id
+}
+
+common
+{
+json_autoconv_numbers = 1
+}
+
+searchd
+{
+    listen              = 9306:mysql41
+    log                 = /var/log/sphinx/searchd.log
+    query_log           = /var/log/sphinx/query.log
+    query_log_format    = sphinxql
+    read_timeout        = 5
+    max_children        = 30
+    pid_file            = /var/run/sphinx/searchd.pid
+    workers             = threads 
+}
