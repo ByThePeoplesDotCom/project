@@ -8,7 +8,7 @@ make it work
   * apt-add-repository ppa:ubuntugis/ubuntugis-unstable
   * apt-get update
   * apt-get install gdal-bin
-4. import shape files
+4. import shape files into mysql (do this from the project directory)
   * `ogr2ogr -overwrite -progress -f "MySQL" MYSQL:forge,user=root -lco ENGINE=MyISAM tl_2014_53_sldl.shp`
 5. install sphinx
   * sudo add-apt-repository ppa:builds/sphinxsearch-rel22
