@@ -32,7 +32,7 @@
 					<p><a href='{{ $v['url2'] }}'>Read the bill here.</a></p>
 					<p>{{ $v['subjects'] }}</p>
 					{{ Form::open(array('action' => 'CommentController@store')) }}
-					{{ Form::textarea('comment', null, array('style' => 'width: 225px; height: 100px;', 'class' => 'form-control textbox')) }}
+					{{ Form::textarea('comment', null, array('style' => 'width: 100%; height: 100px;', 'class' => 'form-control textbox')) }}
 					{{ Form::hidden('bill_id', $v['name']) }}
 					{{ Form::submit('Submit') }}
 					{{ Form::close() }}
@@ -48,7 +48,7 @@
 						<p><a href='{{ $v2['url2'] }}'>Read the bill here.</a></p>
 						<p>{{ $v2['subjects'] }}</p>
 						{{ Form::open(array('action' => 'CommentController@store')) }}
-						{{ Form::textarea('comment', null, array('style' => 'width: 225px; height: 100px;', 'class' => 'form-control textbox')) }}
+						{{ Form::textarea('comment', null, array('style' => 'width:100%; height: 100px;', 'class' => 'form-control textbox')) }}
 						{{ Form::hidden('bill_id', $v2['name']) }}
 						{{ Form::submit('Submit') }}
 						{{ Form::close() }}
@@ -64,7 +64,7 @@
 						<p><a href='{{ $v3['url2'] }}'>Read the bill here.</a></p>
 						<p>{{ $v3['subjects'] }}</p>
 						{{ Form::open(array('action' => 'CommentController@store')) }}
-						{{ Form::textarea('comment', null, array('style' => 'width: 225px; height: 100px;', 'class' => 'form-control textbox')) }}
+						{{ Form::textarea('comment', null, array('style' => 'width: 100%; height: 100px;', 'class' => 'form-control textbox')) }}
 						{{ Form::hidden('bill_id', $v3['name']) }}
 						{{ Form::submit('Submit') }}
 						{{ Form::close() }}
