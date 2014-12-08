@@ -1,4 +1,4 @@
-
+<<<<<<< HEAD
 make it work
 =======
 **is mysql installed? does it have a DB named "forge"?**
@@ -27,4 +27,4 @@ make it work
 2. clean up css shit (move it off of the layout blade template into the css file and make sure everything there is necessary)
 3. learn more about models, make sure the right code is in the right place (controllers vs. models... gotta figure this shit out)
 4. improve style (make it simple as hell)
-
+>>>>>>> cdc2900b61d2e23fa9e20361ff19465cf436b06a
