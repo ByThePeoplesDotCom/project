@@ -4,11 +4,15 @@ make it work
 **is mysql installed? does it have a DB named "forge"?**
 
 1. clone
-2. composer install
-3. install gdal stuff
-  * apt-add-repository ppa:ubuntugis/ubuntugis-unstable
-  * apt-get update
-  * apt-get install gdal-bin
+2. composer install https://getcomposer.org/doc/00-intro.md
+3. install gdal
+  * Ubuntu
+    * apt-add-repository ppa:ubuntugis/ubuntugis-unstable
+    * apt-get update
+    * apt-get install gdal-bin
+  * Fedora
+    * sudo yum install gdal
+    * sudo yum install gdal-python
 4. import shape files into mysql (do this from the project directory)
   * `ogr2ogr -overwrite -progress -f "MySQL" MYSQL:forge,user=root -lco ENGINE=MyISAM tl_2014_53_sldl.shp`
 5. install sphinx
